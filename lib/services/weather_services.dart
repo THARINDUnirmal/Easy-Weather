@@ -13,8 +13,6 @@ class WeatherServices {
 
   final String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 
-  //url = https://api.openweathermap.org/data/2.5/weather?q=London&appid=1cec0946eff1541ae578ba93d6693a4c&units=metric
-
   //get weather from city name
   Future<OpenWeatherModel> getWeatherFromCityName(String cityName) async {
     try {
