@@ -11,17 +11,18 @@ class WeatherServices {
     required this.apiKey,
   });
 
-  final String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+  static const String baseUrl =
+      "https://api.openweathermap.org/data/2.5/weather";
 
   //get weather from city name
   Future<OpenWeatherModel> getWeatherFromCityName(String cityName) async {
     try {
-      final response = await http.get(
-        Uri.parse("$baseUrl?q=$cityName&appid=$apiKey&units=metric"),
-      );
+      final url = '$baseUrl?q=$cityName&appid=$apiKey&units=metric';
+      // final url = '$baseUrl?lat=$lati&lon=$long&appid=$apiKey&units=metric';
+      final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        final dynamic responseData = jsonDecode(response.body);
+        final responseData = jsonDecode(response.body);
         OpenWeatherModel data = OpenWeatherModel.fromJson(responseData);
         return data;
       } else {
@@ -35,21 +36,20 @@ class WeatherServices {
 
   //get weather from current location
   Future<OpenWeatherModel> getWeatherFromCurrentLocation() async {
-    try {
-      String _currentLocaton = await GetLocationServices().getCurruntLocation();
-      final response = await http.get(
-        Uri.parse("$baseUrl?q=$_currentLocaton&appid=$apiKey&units=metric"),
-      );
+    final location = GetLocationServices();
+    final cityList = await location.getCurruntLocation();
 
-      if (response.statusCode == 200) {
-        final dynamic data = jsonDecode(response.body);
-        OpenWeatherModel weatherData = OpenWeatherModel.fromJson(data);
-        return weatherData;
-      } else {
-        throw Exception("Error to fetch data");
-      }
-    } catch (error) {
-      print(error.toString());
+    final lati = cityList[0];
+    final long = cityList[1];
+
+    final url = '$baseUrl?lat=$lati&lon=$long&appid=$apiKey&units=metric';
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      OpenWeatherModel weatherData = OpenWeatherModel.fromJson(data);
+      return weatherData;
+    } else {
       throw Exception("Error to fetch data");
     }
   }
