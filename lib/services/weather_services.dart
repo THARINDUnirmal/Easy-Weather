@@ -18,7 +18,6 @@ class WeatherServices {
   Future<OpenWeatherModel> getWeatherFromCityName(String cityName) async {
     try {
       final url = '$baseUrl?q=$cityName&appid=$apiKey&units=metric';
-      // final url = '$baseUrl?lat=$lati&lon=$long&appid=$apiKey&units=metric';
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {

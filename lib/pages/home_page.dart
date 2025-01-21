@@ -1,4 +1,5 @@
 import 'package:flowx/models/open_weather_model.dart';
+import 'package:flowx/pages/serch_location_page.dart';
 import 'package:flowx/services/weather_services.dart';
 import 'package:flowx/utils/app_text_styles.dart';
 import 'package:flowx/widgets/details_widget.dart';
@@ -40,45 +41,111 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Flowx Weather",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-            ),
+      appBar: AppBar(
+        title: Text(
+          "Easy Weather",
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
           ),
-          actions: [
-            Icon(
-              Icons.light_mode,
-              size: 30,
-            ),
-            SizedBox(
-              width: 20,
-            )
-          ],
         ),
-        body: _weatherData != null
-            ? SingleChildScrollView(
-                child: DetailsWidget(
-                  weatherData: _weatherData!,
-                ),
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Lottie.asset(
-                    "assets/loading_2.json",
-                    width: double.infinity,
-                  ),
-                  Text(
-                    "Loading...",
-                    style: AppTextStyles.subTopicStyle.copyWith(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _weatherData = null;
+                apiCallData();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.blueAccent,
+                    duration: Duration(
+                      seconds: 5,
+                    ),
+                    content: Text(
+                      "Refreshing...",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                ],
-              ));
+                );
+              });
+            },
+            icon: Icon(
+              Icons.refresh,
+              size: 30,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Icon(
+            Icons.light_mode,
+            size: 30,
+          ),
+          SizedBox(
+            width: 20,
+          )
+        ],
+      ),
+      body: _weatherData != null
+          ? SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DetailsWidget(
+                      weatherData: _weatherData!,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll<Color>(
+                          Colors.orangeAccent,
+                        ),
+                        padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
+                          EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 13,
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SerchLocationPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Search Weather",
+                        style: AppTextStyles.buttonStyle,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset(
+                  "assets/loading_2.json",
+                  width: double.infinity,
+                ),
+                Text(
+                  "Loading...",
+                  style: AppTextStyles.subTopicStyle.copyWith(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+    );
   }
 }
