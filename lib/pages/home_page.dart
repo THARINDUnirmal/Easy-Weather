@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
                       "Refreshing...",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
                     ),
                   ),
