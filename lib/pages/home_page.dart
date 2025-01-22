@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Lottie.asset(
-                  "assets/loading_2.json",
+                  "assets/lotte/loading_2.json",
                   width: double.infinity,
                 ),
                 Text(

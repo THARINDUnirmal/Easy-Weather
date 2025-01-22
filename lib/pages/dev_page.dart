@@ -20,7 +20,7 @@ class DevPage extends StatelessWidget {
                 right: MediaQuery.of(context).size.height * -0.03,
                 bottom: MediaQuery.of(context).size.height * 0.165,
                 child: Image.asset(
-                  "assets/user.png",
+                  "assets/lotte/user.png",
                   fit: BoxFit.cover,
                 ),
               ),
@@ -83,6 +83,7 @@ class DevPage extends StatelessWidget {
                           style: AppTextStyles.topicStyle.copyWith(
                             fontSize: 50,
                             fontWeight: FontWeight.w900,
+                            color: Colors.white,
                           ),
                         ),
                         SizedBox(

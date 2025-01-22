@@ -7,21 +7,21 @@ class LottieAnimationFunction {
       case "haze":
       case "dust":
       case "fog":
-        return "assets/cloudy.json";
+        return "assets/lotte/cloudy.json";
 
       case "rain":
       case "drizzle":
       case "shower rain":
-        return "assets/rain.json";
+        return "assets/lotte/rain.json";
 
       case "thunderstorm":
-        return "assets/thunder_rain.json";
+        return "assets/lotte/thunder_rain.json";
 
       case "clear":
-        return "assets/sun_animation.json";
+        return "assets/lotte/sun_animation.json";
 
       default:
-        return "assets/sun_animation.json";
+        return "assets/lotte/sun_animation.json";
     }
   }
 }
