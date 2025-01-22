@@ -79,15 +79,20 @@ class _SerchLocationPageState extends State<SerchLocationPage> {
                 ),
                 onSubmitted: (value) => _serchWeather(),
               ),
-              SizedBox(
-                height: 20,
-              ),
               _error != null
-                  ? Text(
-                      _error!,
-                      style: AppTextStyles.subTopicStyle.copyWith(
-                        color: Colors.red,
-                      ),
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          _error!,
+                          style: AppTextStyles.subTopicStyle.copyWith(
+                            color: Colors.red,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     )
                   : _weather != null
                       ? DetailsWidget(weatherData: _weather!)
@@ -98,7 +103,7 @@ class _SerchLocationPageState extends State<SerchLocationPage> {
                               height: MediaQuery.of(context).size.height * 0.1,
                             ),
                             Lottie.asset(
-                              "assets/loading_2.json",
+                              "assets/thunder_rain.json",
                               width: double.infinity,
                             ),
                             Text(

@@ -1,4 +1,5 @@
 import 'package:flowx/models/open_weather_model.dart';
+import 'package:flowx/pages/dev_page.dart';
 import 'package:flowx/utils/app_text_styles.dart';
 import 'package:flowx/utils/lottie_animation_function.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,19 @@ class DetailsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Lottie.asset(
-          LottieAnimationFunction().lottieMethord(weatherData.mainCondition),
-          width: double.infinity,
+        GestureDetector(
+          onLongPress: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DevPage(),
+              ),
+            );
+          },
+          child: Lottie.asset(
+            LottieAnimationFunction().lottieMethord(weatherData.mainCondition),
+            width: double.infinity,
+          ),
         ),
         SizedBox(
           height: 30,
