@@ -10,11 +10,11 @@ class GetLocationServices {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    print("latitude : ${position.latitude}");
-    print("latitude : ${position.longitude}");
+    // print("latitude : ${position.latitude}");
+    // print("latitude : ${position.longitude}");
 
     List<double> latAndLong = [position.latitude, position.longitude];
-    print(latAndLong);
+    // print(latAndLong);
 
     //convert the possition to list of place mark
     // List<Placemark> placeMark =

@@ -3,8 +3,12 @@ import 'package:flowx/providers/theme_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
+
   await dotenv.load(fileName: ".env");
 
   runApp(

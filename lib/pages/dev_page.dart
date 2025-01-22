@@ -118,6 +118,7 @@ class DevPage extends StatelessWidget {
                                   child: Text(
                                     "Join with GitHub",
                                     style: AppTextStyles.subTopicStyle.copyWith(
+                                      // ignore: deprecated_member_use
                                       color: Colors.black.withOpacity(0.7),
                                       fontWeight: FontWeight.w600,
                                     ),

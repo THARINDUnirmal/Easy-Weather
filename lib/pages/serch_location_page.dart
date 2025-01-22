@@ -41,7 +41,7 @@ class _SerchLocationPageState extends State<SerchLocationPage> {
       setState(() {
         _error = "Could not find weather data for $cityName";
       });
-      print(errorr.toString());
+      throw Exception("Error to fetch data !");
     }
   }
 

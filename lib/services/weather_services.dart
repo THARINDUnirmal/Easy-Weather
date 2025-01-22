@@ -28,7 +28,6 @@ class WeatherServices {
         throw Exception("Error to fetch Data");
       }
     } catch (error) {
-      print("Error : $error");
       throw Exception("Error to fetch Data");
     }
   }

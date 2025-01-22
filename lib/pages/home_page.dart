@@ -24,13 +24,12 @@ class _HomePageState extends State<HomePage> {
 
   void apiCallData() async {
     try {
-      await Future.delayed(Duration(seconds: 3));
       final data = await _weatherServices.getWeatherFromCurrentLocation();
       setState(() {
         _weatherData = data;
       });
     } catch (e) {
-      print(e.toString());
+      throw Exception("Error to fetch data !");
     }
   }
 
@@ -38,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     apiCallData();
+    setState(() {});
   }
 
   @override
@@ -52,10 +52,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-                _weatherData = null;
+          GestureDetector(
+            onLongPress: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SerchLocationPage(),
+                  ));
+            },
+            child: IconButton(
+              onPressed: () {
                 apiCallData();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -72,11 +78,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 );
-              });
-            },
-            icon: Icon(
-              Icons.refresh,
-              size: 30,
+                setState(() {});
+              },
+              icon: Icon(
+                Icons.refresh,
+                size: 30,
+              ),
             ),
           ),
           SizedBox(
