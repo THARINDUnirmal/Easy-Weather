@@ -1,11 +1,13 @@
 import 'package:flowx/models/open_weather_model.dart';
 import 'package:flowx/pages/serch_location_page.dart';
+import 'package:flowx/providers/theme_data_provider.dart';
 import 'package:flowx/services/weather_services.dart';
 import 'package:flowx/utils/app_text_styles.dart';
 import 'package:flowx/widgets/details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -79,9 +81,17 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             width: 10,
           ),
-          Icon(
-            Icons.light_mode,
-            size: 30,
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeDataProvider>(context, listen: false)
+                  .toggelTheme(Theme.of(context).brightness != Brightness.dark);
+            },
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+              size: 30,
+            ),
           ),
           SizedBox(
             width: 20,
@@ -120,7 +130,9 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text(
                         "Search Weather",
-                        style: AppTextStyles.buttonStyle,
+                        style: AppTextStyles.buttonStyle.copyWith(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     SizedBox(

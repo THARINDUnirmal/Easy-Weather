@@ -1,6 +1,5 @@
 import 'package:flowx/pages/home_page.dart';
 import 'package:flowx/providers/theme_data_provider.dart';
-import 'package:flowx/utils/app_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppThemeData.darckTheme,
+      theme: Provider.of<ThemeDataProvider>(context).getTheme,
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );

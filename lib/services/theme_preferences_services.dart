@@ -6,7 +6,7 @@ class ThemePreferencesServices {
     pref.setBool("isDark", isDark);
   }
 
-  Future<bool> getSavePreferences() async {
+  Future<bool> getSavedPreferences() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     final data = pref.getBool("isDark");
     return data ?? false;

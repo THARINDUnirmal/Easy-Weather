@@ -103,7 +103,7 @@ class _SerchLocationPageState extends State<SerchLocationPage> {
                               height: MediaQuery.of(context).size.height * 0.1,
                             ),
                             Lottie.asset(
-                              "assets/thunder_rain.json",
+                              "assets/loading_2.json",
                               width: double.infinity,
                             ),
                             Text(
