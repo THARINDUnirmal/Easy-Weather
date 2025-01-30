@@ -52,38 +52,32 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          GestureDetector(
-            onLongPress: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SerchLocationPage(),
-                  ));
-            },
-            child: IconButton(
-              onPressed: () {
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _weatherData = null;
                 apiCallData();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Colors.blueAccent,
-                    duration: Duration(
-                      seconds: 5,
-                    ),
-                    content: Text(
-                      "Refreshing...",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
+              });
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.blueAccent,
+                  duration: Duration(
+                    seconds: 5,
+                  ),
+                  content: Text(
+                    "Refreshing...",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
                     ),
                   ),
-                );
-                setState(() {});
-              },
-              icon: Icon(
-                Icons.refresh,
-                size: 30,
-              ),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.refresh,
+              size: 30,
             ),
           ),
           SizedBox(
