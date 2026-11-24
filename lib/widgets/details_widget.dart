@@ -1,5 +1,4 @@
 import 'package:flowx/models/open_weather_model.dart';
-import 'package:flowx/pages/dev_page.dart';
 import 'package:flowx/utils/lottie_animation_function.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -17,77 +16,73 @@ class DetailsWidget extends StatelessWidget {
         ? '${weatherData.description[0].toUpperCase()}${weatherData.description.substring(1)}'
         : condition;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      GestureDetector(
-        onLongPress: () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => DevPage())),
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(22, 24, 22, 20),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF4E9AF8), Color(0xFF2868D9), Color(0xFF2451B5)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                  color: const Color(0xFF347FE9).withOpacity(.22),
-                  blurRadius: 25,
-                  offset: const Offset(0, 12))
-            ],
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.fromLTRB(22, 24, 22, 20),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF4E9AF8), Color(0xFF2868D9), Color(0xFF2451B5)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          child: Stack(children: [
-            Positioned(
-                right: -16,
-                top: -18,
-                child: Icon(Icons.cloud_rounded,
-                    size: 110, color: Colors.white.withOpacity(.08))),
-            Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Icon(Icons.location_on_rounded,
-                    color: Colors.white70, size: 18),
-                const SizedBox(width: 5),
-                Flexible(
-                    child: Text(weatherData.cityName,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700))),
-              ]),
-              SizedBox(height: 6),
-              Text('CURRENT WEATHER',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(.65),
-                      fontSize: 10,
-                      letterSpacing: 2,
-                      fontWeight: FontWeight.bold)),
-              SizedBox(height: 2),
-              SizedBox(
-                  height: 165,
-                  child: Lottie.asset(iconPath, fit: BoxFit.contain)),
-              Text('${weatherData.temp.round()}°',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 76,
-                      height: .95,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: -4)),
-              const SizedBox(height: 8),
-              Text(desc,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600)),
-              const SizedBox(height: 4),
-              Text('Feels like ${weatherData.temp.round()}°C',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(.7), fontSize: 13)),
-            ]),
-          ]),
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xFF347FE9).withOpacity(.22),
+                blurRadius: 25,
+                offset: const Offset(0, 12))
+          ],
         ),
+        child: Stack(children: [
+          Positioned(
+              right: -16,
+              top: -18,
+              child: Icon(Icons.cloud_rounded,
+                  size: 110, color: Colors.white.withOpacity(.08))),
+          Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(Icons.location_on_rounded,
+                  color: Colors.white70, size: 18),
+              const SizedBox(width: 5),
+              Flexible(
+                  child: Text(weatherData.cityName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700))),
+            ]),
+            SizedBox(height: 6),
+            Text('CURRENT WEATHER',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(.65),
+                    fontSize: 10,
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.bold)),
+            SizedBox(height: 2),
+            SizedBox(
+                height: 165,
+                child: Lottie.asset(iconPath, fit: BoxFit.contain)),
+            Text('${weatherData.temp.round()}°',
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 76,
+                    height: .95,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: -4)),
+            const SizedBox(height: 8),
+            Text(desc,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600)),
+            const SizedBox(height: 4),
+            Text('Feels like ${weatherData.temp.round()}°C',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(.7), fontSize: 13)),
+          ]),
+        ]),
       ),
       const SizedBox(height: 22),
       Text('Weather details',
