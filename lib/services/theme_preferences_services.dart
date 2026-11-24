@@ -2,13 +2,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemePreferencesServices {
   Future<void> savePreferenses(bool isDark) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setBool("isDark", isDark);
+    final pref = await SharedPreferences.getInstance();
+    await pref.setBool('isDark', isDark);
   }
-
   Future<bool> getSavedPreferences() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    final data = pref.getBool("isDark");
-    return data ?? false;
+    final pref = await SharedPreferences.getInstance();
+    return pref.getBool('isDark') ?? false;
   }
 }

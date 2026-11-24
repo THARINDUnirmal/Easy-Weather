@@ -4,28 +4,21 @@ import 'package:flutter/material.dart';
 
 class ThemeDataProvider extends ChangeNotifier {
   ThemeData _theme = AppThemeData.lightTheme;
-  ThemeDataProvider() {
-    _loadTheme();
-  }
-
-  //getter
+  ThemeDataProvider() { _loadTheme(); }
   ThemeData get getTheme => _theme;
 
-  //setter
-  set setThemeData(ThemeData theme) {
+  void _apply(ThemeData theme) {
     _theme = theme;
     notifyListeners();
   }
 
   Future<void> _loadTheme() async {
-    final data = await ThemePreferencesServices().getSavedPreferences();
-    setThemeData = data ? AppThemeData.darckTheme : AppThemeData.lightTheme;
+    final dark = await ThemePreferencesServices().getSavedPreferences();
+    _apply(dark ? AppThemeData.darckTheme : AppThemeData.lightTheme);
   }
 
   Future<void> toggelTheme(bool isDark) async {
-    setThemeData = isDark ? AppThemeData.darckTheme : AppThemeData.lightTheme;
-
+    _apply(isDark ? AppThemeData.darckTheme : AppThemeData.lightTheme);
     await ThemePreferencesServices().savePreferenses(isDark);
-    notifyListeners();
   }
 }
